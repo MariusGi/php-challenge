@@ -11,10 +11,11 @@ class Jurgis
 
     private function getResponse(string $message): string
     {
-        if (strpos($message, '?') !== false) {
-            $response = 'Okis.';
-        } elseif (strpos($message, '!') !== false) {
+        if (strpos($message, '!') !== false ||
+                  $message === strtoupper($message)) {
             $response = 'Oi oi, atvėsk!';
+        } elseif (strpos($message, '?') !== false) {
+            $response = 'Okis.';
         } elseif (!$message) {
             $response = 'Alio! Kuku?';
         } else {
