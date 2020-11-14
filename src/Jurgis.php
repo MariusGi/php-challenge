@@ -11,17 +11,44 @@ class Jurgis
 
     private function getResponse(string $message): string
     {
-        if (strpos($message, '!') !== false ||
-                  $message === strtoupper($message)) {
-            $response = 'Oi oi, atvėsk!';
-        } elseif (strpos($message, '?') !== false) {
-            $response = 'Okis.';
-        } elseif (!$message) {
-            $response = 'Alio! Kuku?';
-        } else {
-            $response = 'Aha gerai.';
+        if ($this->checkIfStringShouts($message) === true) {
+            return 'Oi oi, atvėsk!';
         }
 
-        return $response;
+        if ($this->checkIfStringAsks($message)) {
+            return 'Okis.';
+        }
+
+        if (!$message) {
+            return 'Alio! Kuku?';
+        }
+
+        return 'Aha gerai.';
+    }
+
+    private function checkIfStringShouts(string $message): bool
+    {
+        if (strpos($message, '!') !== false) {
+            return true;
+        }
+
+        /*
+         * Check if string changes using strtolower function to make sure entering numbers is not considered as shout
+         * And check if string is equal to string after using strtoupper function to make sure all capital letters are entered
+         */
+        if ($message !== strtolower($message) && $message === strtoupper($message)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function checkIfStringAsks($message)
+    {
+        if (strpos($message, '?') !== false) {
+            return true;
+        }
+
+        return false;
     }
 }
