@@ -28,7 +28,7 @@ class Jurgis
 
     private function checkIfStringShouts(string $message): bool
     {
-        if (strpos($message, '!') !== false) {
+        if (substr($message, '-1') === '!') {
             return true;
         }
 
