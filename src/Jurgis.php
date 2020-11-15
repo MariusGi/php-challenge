@@ -43,7 +43,7 @@ class Jurgis
         return false;
     }
 
-    private function checkIfStringAsks($message)
+    private function checkIfStringAsks(string $message): bool
     {
         if (substr($message, '-1') === '?') {
             return true;
@@ -52,7 +52,7 @@ class Jurgis
         return false;
     }
 
-    private function checkIfStingEmptyOrHasOnlySpaces($message)
+    private function checkIfStingEmptyOrHasOnlySpaces(string $message): bool
     {
         if (trim($message) === '') {
             return true;
