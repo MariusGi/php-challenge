@@ -45,7 +45,7 @@ class Jurgis
 
     private function checkIfStringAsks($message)
     {
-        if (strpos($message, '?') !== false) {
+        if (substr($message, '-1') === '?') {
             return true;
         }
 
