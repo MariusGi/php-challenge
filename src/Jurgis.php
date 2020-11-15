@@ -11,16 +11,16 @@ class Jurgis
 
     private function getResponse(string $message): string
     {
+        if ($this->checkIfStingEmptyOrHasOnlySpaces($message)) {
+            return 'Alio! Kuku?';
+        }
+
         if ($this->checkIfStringShouts($message) === true) {
             return 'Oi oi, atvėsk!';
         }
 
         if ($this->checkIfStringAsks($message)) {
             return 'Okis.';
-        }
-
-        if (!$message) {
-            return 'Alio! Kuku?';
         }
 
         return 'Aha gerai.';
@@ -46,6 +46,15 @@ class Jurgis
     private function checkIfStringAsks($message)
     {
         if (substr($message, '-1') === '?') {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function checkIfStingEmptyOrHasOnlySpaces($message)
+    {
+        if (trim($message) === '') {
             return true;
         }
 
